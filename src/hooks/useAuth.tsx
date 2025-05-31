@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { supabase } from '@/integrations/supabase/client';
 
 interface AuthUser {
-  id: string;
+  id: number; // Changed to number to match database schema
   username: string;
   email: string;
   full_name: string;

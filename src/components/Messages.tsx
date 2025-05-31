@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -93,7 +92,7 @@ export const Messages = () => {
         .from('messages')
         .insert([{
           match_id: selectedMatch,
-          sender_id: user?.id || '',
+          sender_id: user?.id || 0,
           content: newMessage, // Vulnerable to XSS attacks
           created_at: new Date().toISOString()
         }]);
@@ -111,7 +110,7 @@ export const Messages = () => {
   };
 
   const getOtherHorse = (match: Match & { horse1: Horse; horse2: Horse }): Horse => {
-    return match.horse1_id === user?.id ? match.horse2 : match.horse1;
+    return match.horse1_id === user?.id?.toString() ? match.horse2 : match.horse1;
   };
 
   if (loading) {

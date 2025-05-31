@@ -24,7 +24,7 @@ export const BrowseHorses = () => {
       const { data, error } = await supabase
         .from('horses')
         .select('*')
-        .neq('owner_id', user?.id || '')
+        .neq('owner_id', user?.id || 0)
         .limit(20);
 
       if (error) {
@@ -49,7 +49,7 @@ export const BrowseHorses = () => {
       const { error } = await supabase
         .from('swipe_actions')
         .insert([{
-          swiper_horse_id: user.id, // Vulnerable: Using user ID instead of horse ID
+          swiper_horse_id: currentHorse.id, // Using current horse's ID as swiper
           swiped_horse_id: currentHorse.id,
           action,
           created_at: new Date().toISOString()
@@ -66,7 +66,7 @@ export const BrowseHorses = () => {
           .from('swipe_actions')
           .select('*')
           .eq('swiper_horse_id', currentHorse.id)
-          .eq('swiped_horse_id', user.id)
+          .eq('swiped_horse_id', currentHorse.id)
           .eq('action', 'like')
           .single();
 
@@ -75,7 +75,7 @@ export const BrowseHorses = () => {
           await supabase
             .from('matches')
             .insert([{
-              horse1_id: user.id,
+              horse1_id: currentHorse.id,
               horse2_id: currentHorse.id,
               status: 'matched',
               created_at: new Date().toISOString()

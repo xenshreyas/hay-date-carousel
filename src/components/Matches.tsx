@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -49,7 +49,7 @@ export const Matches = () => {
   };
 
   const getOtherHorse = (match: MatchWithHorse): Horse => {
-    return match.horse1_id === user?.id ? match.horse2 : match.horse1;
+    return match.horse1_id === user?.id?.toString() ? match.horse2 : match.horse1;
   };
 
   if (loading) {

@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { HorseCard } from './HorseCard';
 import { Horse } from '@/types';
 import { useAuth } from '@/hooks/useAuth';
@@ -41,7 +40,7 @@ export const MyHorses = () => {
       const { data, error } = await supabase
         .from('horses')
         .select('*')
-        .eq('owner_id', user?.id || '');
+        .eq('owner_id', user?.id || 0);
 
       if (error) {
         console.error('Error loading horses:', error);
@@ -68,7 +67,7 @@ export const MyHorses = () => {
       location: formData.location,
       personality: formData.personality.split(',').map(p => p.trim()).filter(Boolean),
       image_url: formData.image_url || null,
-      owner_id: user?.id || '',
+      owner_id: user?.id || 0,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     };

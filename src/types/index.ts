@@ -7,7 +7,7 @@ export interface Horse {
   color: string;
   description: string;
   image_url?: string;
-  owner_id: string;
+  owner_id: number; // This matches the database schema (integer)
   location: string;
   personality: string[];
   created_at: string;
@@ -15,15 +15,16 @@ export interface Horse {
 }
 
 export interface User {
-  id: string;
+  id: number; // This matches the database schema (integer)
   username: string;
-  email: string;
-  full_name: string;
-  location: string;
+  email?: string;
+  full_name?: string;
+  location?: string;
   bio?: string;
   profile_image?: string;
-  created_at: string;
-  updated_at: string;
+  password: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Match {
@@ -37,7 +38,7 @@ export interface Match {
 export interface Message {
   id: string;
   match_id: string;
-  sender_id: string;
+  sender_id: number; // This matches the database schema (integer)
   content: string;
   created_at: string;
 }
