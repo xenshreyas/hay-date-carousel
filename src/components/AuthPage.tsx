@@ -1,7 +1,6 @@
-
-import { useState } from 'react';
-import { LoginForm } from './LoginForm';
-import { RegisterForm } from './RegisterForm';
+import { useState } from "react";
+import { LoginForm } from "./LoginForm";
+import { RegisterForm } from "./RegisterForm";
 
 export const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,10 +9,14 @@ export const AuthPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 to-blue-100 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">🐎 Horse Tinder</h1>
-          <p className="text-gray-600">The premier dating app for horses!</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            🐎 Horse Tinder AI B2B SaaS
+          </h1>
+          <p className="text-gray-600">
+            The premier AI B2B dating SaaS app for horses!
+          </p>
         </div>
-        
+
         {isLogin ? (
           <LoginForm onToggleMode={() => setIsLogin(false)} />
         ) : (

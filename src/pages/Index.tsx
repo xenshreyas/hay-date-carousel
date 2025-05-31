@@ -1,7 +1,6 @@
-
-import { useAuth } from '@/hooks/useAuth';
-import { AuthPage } from '@/components/AuthPage';
-import { Dashboard } from '@/components/Dashboard';
+import { useAuth } from "@/hooks/useAuth";
+import { AuthPage } from "@/components/AuthPage";
+import { Dashboard } from "@/components/Dashboard";
 
 const Index = () => {
   const { user, loading } = useAuth();
@@ -11,7 +10,7 @@ const Index = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">🐎</div>
-          <p className="text-gray-600">Loading Horse Tinder...</p>
+          <p className="text-gray-600">Loading Horse Tinder AI B2B SaaS...</p>
         </div>
       </div>
     );

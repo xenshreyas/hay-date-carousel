@@ -33,7 +33,7 @@ export const LoginForm = ({ onToggleMode }: LoginFormProps) => {
     if (success) {
       toast({
         title: "Login Successful",
-        description: "Welcome back to Horse Tinder!",
+        description: "Welcome back to Horse Tinder AI B2B SaaS!",
       });
     } else {
       toast({
@@ -49,7 +49,7 @@ export const LoginForm = ({ onToggleMode }: LoginFormProps) => {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Login to Horse Tinder</CardTitle>
+        <CardTitle>Login to Horse Tinder AI B2B SaaS</CardTitle>
         <CardDescription>
           Find the perfect match for your horse! Try admin/admin for demo.
         </CardDescription>

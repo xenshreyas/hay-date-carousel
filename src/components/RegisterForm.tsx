@@ -1,21 +1,26 @@
-
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/hooks/useAuth';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 interface RegisterFormProps {
   onToggleMode: () => void;
 }
 
 export const RegisterForm = ({ onToggleMode }: RegisterFormProps) => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const { toast } = useToast();
@@ -26,27 +31,29 @@ export const RegisterForm = ({ onToggleMode }: RegisterFormProps) => {
 
     // Vulnerable: No input validation or sanitization
     const success = await register(username, email, password, fullName);
-    
+
     if (success) {
       toast({
         title: "Registration Successful",
-        description: "Welcome to Horse Tinder! Your account has been created.",
+        description:
+          "Welcome to Horse Tinder AI B2B SaaS! Your account has been created.",
       });
     } else {
       toast({
         title: "Registration Failed",
-        description: "Username might already exist. Please try a different one.",
+        description:
+          "Username might already exist. Please try a different one.",
         variant: "destructive",
       });
     }
-    
+
     setLoading(false);
   };
 
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Join Horse Tinder</CardTitle>
+        <CardTitle>Join Horse Tinder AI B2B SaaS</CardTitle>
         <CardDescription>
           Create an account to start matching horses!
         </CardDescription>
@@ -98,7 +105,7 @@ export const RegisterForm = ({ onToggleMode }: RegisterFormProps) => {
             />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Creating Account...' : 'Register'}
+            {loading ? "Creating Account..." : "Register"}
           </Button>
           <Button
             type="button"
