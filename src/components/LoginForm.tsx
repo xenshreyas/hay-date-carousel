@@ -1,19 +1,24 @@
-
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/hooks/useAuth';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 interface LoginFormProps {
   onToggleMode: () => void;
 }
 
 export const LoginForm = ({ onToggleMode }: LoginFormProps) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { toast } = useToast();
@@ -24,7 +29,7 @@ export const LoginForm = ({ onToggleMode }: LoginFormProps) => {
 
     // Vulnerable: No input validation or sanitization
     const success = await login(username, password);
-    
+
     if (success) {
       toast({
         title: "Login Successful",
@@ -37,7 +42,7 @@ export const LoginForm = ({ onToggleMode }: LoginFormProps) => {
         variant: "destructive",
       });
     }
-    
+
     setLoading(false);
   };
 
@@ -74,7 +79,7 @@ export const LoginForm = ({ onToggleMode }: LoginFormProps) => {
             />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? "Logging in..." : "Login"}
           </Button>
           <Button
             type="button"
@@ -86,9 +91,22 @@ export const LoginForm = ({ onToggleMode }: LoginFormProps) => {
           </Button>
         </form>
         <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-sm">
-          <strong>Demo Credentials:</strong><br />
-          Username: admin<br />
+          <strong>Demo Credentials:</strong>
+          <br />
+          Username: admin
+          <br />
           Password: admin
+          <br />
+          <br />
+          <strong>🚨 SQL Injection Test:</strong>
+          <br />
+          Username: admin
+          <br />
+          Password: <code>' OR 1=1 --</code>
+          <br />
+          <span className="text-red-600 text-xs">
+            (This bypasses authentication - for educational purposes only!)
+          </span>
         </div>
       </CardContent>
     </Card>
